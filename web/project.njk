@@ -1,0 +1,11 @@
+---
+layout: layouts/project.njk
+tags:
+  - myProjects
+pagination:
+  alias: project
+  data: projects
+  size: 1
+  addAllPagesToCollections: true
+permalink: "{{project.slug.current | slug}}/"
+---

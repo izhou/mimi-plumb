@@ -1,0 +1,11 @@
+---
+layout: layouts/sitePage.njk
+tags:
+  - myPages
+pagination:
+  alias: sitePage
+  data: pages
+  size: 1
+  addAllPagesToCollections: true
+permalink: "{{ sitePage.slug.current | slug }}/"
+---

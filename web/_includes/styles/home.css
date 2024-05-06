@@ -1,0 +1,63 @@
+:root {
+  --project-height: 90%;
+}
+
+.home-projects {
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  scroll-snap-type: y mandatory;
+}
+
+.home-project-container {
+  max-height: var(--project-height);
+}
+
+.home-project-container:last-of-type {
+  min-height: 100%;
+}
+
+.home-project-container:last-of-type .home-project{
+  max-height: 90%;
+}
+
+.home-project {
+  display: flex;
+  flex-direction: column;
+  opacity: 0.7;
+  transition: opacity 1s, filter 200ms, -webkit-filter 200ms;
+  height: 100%;
+}
+
+/* Set so that scroll is correct onload */
+.home-project:first-of-type {
+  scroll-snap-align: start;
+}
+
+.scroll-snap {
+    scroll-snap-align: start;
+}
+
+.home-project.is-active {
+  opacity: 1;
+}
+
+.home-project.is-active .home-project-title{
+  opacity: 1;
+}
+
+.home-project-gallery {
+  flex: 0 1 auto;
+  overflow: hidden;
+}
+
+.home-project .gallery-photo {
+  object-position: top left;
+}
+
+.home-project-title {
+  opacity: 0;
+  margin: var(--inline-padding) 0;
+  transition: opacity 1s, filter 200ms, -webkit-filter 200ms;
+}

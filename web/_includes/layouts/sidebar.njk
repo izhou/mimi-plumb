@@ -1,0 +1,21 @@
+<div class="sidebar-container">
+  <div class="sidebar-spacer"></div>
+
+  <div class="sidebar">
+    <div class="sidebar-header">
+    <h1><a {% if page.url != "/" %}href="/" {% endif %}>{{home.title}}</a></h1>
+      <div class="sidebar-icons">
+        <div class="sidebar-icon sidebar-icon-open">{% include "assets/heroicons/bars-3.svg" %}</div>
+        <div class="sidebar-icon sidebar-icon-close">{% include "assets/heroicons/x-mark.svg" %}</div>
+      </div>
+    </div>
+    <div class="sidebar-dropdown">
+      {%- for item in home.sidebar -%}
+        {%if item.header %}<h2 class="sidebar-subheader">{{item.header}}</h2>{% endif %}
+        {%if item._type == "project" or item._type == "page" %}
+          <h3><a class="sidebar-item" href="/{{item.slug}}">{{item.title}}</a></h3>
+        {% endif %}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>

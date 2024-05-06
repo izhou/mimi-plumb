@@ -1,0 +1,15 @@
+---
+permalink: /_redirects
+eleventyExcludeFromCollections: true
+---
+
+# Redirect default Netlify subdomain to primary domain
+https://lucas-foglia-web.netlify.app/* https://www.lucasfoglia.com/:splat 301!
+
+# Redirects home to main site
+/home / 301!
+{%for redirect in home.redirects%}
+/{{ redirect.redirectFrom.current }} /{{redirect.redirectTo.slug}} 301!
+{% endfor%}
+# Redirects nonexistent pages to home
+/* /home 301

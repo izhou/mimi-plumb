@@ -1,0 +1,51 @@
+/* Project Page */
+
+.project-index-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(min(45%,220px),1fr));
+  justify-items: center;
+  grid-gap: 1rem;
+}
+
+#project-gallery {
+  position: relative;
+  height: initial;
+  overflow: initial;
+  max-height: 100%;
+}
+
+.project-info div{
+  padding-top: 6px;
+}
+
+.project-info--title {
+  padding-bottom: 0.5rem;
+}
+
+.gallery-photo-title {
+  font-size: var(--h2-font-size);
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.container-active {
+  pointer-events: none;
+  color: var(--hover-color);
+  text-decoration: underline;
+  cursor: default;
+  font-weight: bold;
+}
+
+@media (hover:hover) {
+  .project-index-photo:hover {
+    opacity: 0.6;
+    cursor: pointer;
+  }
+}
+
+.project-nav-link svg {
+  stroke: var(--font-color);
+  height: calc(var(--h2-font-size) + 1px);
+  width: var(--h2-font-size);
+  vertical-align: text-bottom;
+}

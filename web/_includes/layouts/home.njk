@@ -1,0 +1,50 @@
+{% extends "layouts/base.njk" %}
+
+{% set css %}
+  {% include "styles/home.css" %}
+  {% include "styles/gallery.css" %}
+{%endset%}
+
+{% block gridMiddleRight %}
+
+<div class="home-projects">
+  {%- for project in home.timeline -%}
+    <div class="home-project-container">
+     {% set project_index = loop.index0 %}
+      <div class="home-project" data-project-index="{{project_index}}" data-project-slug="{{project.slug.current}}">
+        <div class="home-project-gallery gallery gallery-slideshow" class="grid-right-content">
+          {%- for photo in project.gallery -%}
+            <div 
+              class="gallery-photo-container
+                {% if not loop.first %}is-hidden{% endif %}
+                {% if project.aspect_ratio|length %}photo-container--aspect-ratio{%endif%}
+              "
+              data-gallery-index="{{loop.index0}}"
+              data-project-gallery-index="{{photo.project_index}}"
+              {% if project.aspect_ratio|length %} style="--aspect-ratio-top-padding: {{project.aspect_ratio.height/project.aspect_ratio.width * 100}}%"{% endif %}
+            >
+              <img 
+                class="lazyload photo gallery-photo gallery-photo-link fade-in"
+                src="{% imageUrlFor photo, true %}"
+                data-src="{% imageUrlFor photo %}"
+                data-project-index="{{project_index}}"
+                data-project-slug="{{project.slug.current}}"
+                alt="{{photo.title}}"
+                {%if project.aspect_ratio %}style="aspect-ratio: {{project.aspect_ratio.width}}/{{project.aspect_ratio.height}};{%endif%}"/>
+            </div>
+          {%- endfor -%}
+        </div>
+        <h3 class="home-project-title"><a href="/{{project.slug.current}}">{{project.title}}</a></h3>
+      </div>
+    </div>
+  {%- endfor -%}
+</div>
+
+{%endblock%}
+
+{% block js %}
+  <script>
+    {% include "js/gallery.js" %}
+    {% include "js/home.js" %}
+  </script>
+{% endblock %}

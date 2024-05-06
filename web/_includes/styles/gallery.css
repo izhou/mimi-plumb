@@ -1,0 +1,56 @@
+.gallery {
+  display: grid;
+  grid-auto-rows: 100%;
+  position: relative;
+}
+
+.gallery-photo-container {
+  width: 100%;
+  height: 100%;
+  grid-row-start: 1;
+  grid-column-start: 1;
+  transition: opacity 1500ms, filter 1500ms, -webkit-filter 1500ms;
+  touch-action: manipulation;
+}
+
+.gallery-slideshow .gallery-photo-container.is-hidden {
+  display: initial !important;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.gallery-photo {
+  height: 100%;
+}
+
+.gallery-photo-caption {
+  overflow-wrap: break-word;
+}
+
+.gallery--nav-left {
+  cursor: url(../assets/heroicons/chevron-left.svg), auto;
+}
+
+.gallery--nav-right {
+  cursor: url(../assets/heroicons/chevron-right.svg), auto;
+}
+
+.gallery-photo-link {
+  cursor: pointer;
+}
+
+.gallery--presentation-mode {
+  position: absolute !important;
+  height: 100% !important;
+  width: 100%;
+  padding: 0 !important;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background: var(--background-color);
+  transition: background 200ms;
+}
+.gallery--presentation-mode .gallery-photo-container{
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,104 @@
+{% extends "layouts/base.njk" %}
+
+{% set css %}
+  {% include "styles/project.css" %}
+  {% include "styles/gallery.css" %}
+{%endset%}
+
+{% if project.noindex %}
+  {% set noindex = true %}
+{% endif %}
+
+{%set title %}{{project.title | safe}}{%endset%}
+
+{% if project.description %}
+  {%set description %}{{project.description | safe}}{%endset%}
+{%endif%}
+
+{% block gridTopLeft %}
+  <h3>
+    <a class="project-nav-link project-nav-link--home" href=  "/">
+      {% include "assets/heroicons/chevron-left.svg" %}Home
+    </a>
+    <a class="project-nav-link project-nav-link--index project--container-link is-hidden" data-container="project-index">
+     {% include "assets/heroicons/x-mark.svg" %}
+    </a>
+  </h3>
+{%endblock%}
+
+{% block gridMiddleLeft %}
+  <div id="project-gallery-captions" class="grid-left-content is-hidden">
+  {%- for photo in project.gallery -%}
+    <div class="gallery-photo-caption-container is-hidden" data-gallery-index="{{loop.index0}}">
+      <div class="gallery-photo-title">{{photo.title}}</div>
+      <div class="gallery-photo-caption hide-on-mobile">{{photo.caption | markdownify | safe}}</div>
+    </div>
+  {%- endfor -%}
+  </div>
+
+  <div class="grid-middle-left-spacer"></div>
+{%endblock%}
+
+{% block gridMiddleRight %}
+  <div id="project-index" class="project-index-container grid-right-content">
+    {%- for photo in project.gallery -%}
+    <div class="project-index-photo-container {% if project.aspect_ratio|length %}photo-container--aspect-ratio{%endif%}" {% if project.aspect_ratio|length %} style="--aspect-ratio-top-padding: {{project.aspect_ratio.height/project.aspect_ratio.width * 100}}%; position: relative; width: 100%; height: 0px;" {% endif %}>
+      <img 
+        class="photo project-index-photo lazyload fade-in"
+        src="{% imageUrlFor photo, true %}"
+        data-src="{% imageUrlFor photo %}"
+        data-gallery-index={{loop.index0}}
+        alt="{{photo.title}}"
+      />
+      </div>
+    {%- endfor -%}
+  </div>
+
+  <div id="project-gallery" class="gallery grid-right-content is-hidden" data-caption-el="project-gallery-captions">
+    {%- for photo in project.gallery -%}
+      <div class="gallery-photo-container is-hidden" data-photo-key="{{photo._key}}" data-gallery-index={{loop.index0}}>
+        <img class="lazyload photo gallery-photo" src="{% imageUrlFor photo, true %}" data-src="{% imageUrlFor photo %}" alt={{photo.alt}}/>
+      </div>
+    {%- endfor -%}
+  </div>
+
+  <div id="project-statement" class="grid-right-content is-hidden">
+    <div class="grid-right-text-container">
+      <div class="grid-right-text-content">
+        <div class="grid-right-text-spacer"></div>
+        <div class="grid-right-text">
+          {{ project.statement | markdownify | safe }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-middle-right-spacer"></div>
+{%endblock%}
+
+{% block gridBottomLeft %}
+  <h1 class="project-info--title">{{project.title}}</h1>
+
+  <h3 class="project-info--links">
+    {# <a class="project-info--link project--container-link" data-container="project-gallery">Gallery</a> /  #}
+    <a class="project-info--link project--container-link container-active" data-container="project-index">Gallery</a> /
+    <a class="project-info--link project--container-link" data-container="project-statement">Statement</a>
+  </h3>
+{%endblock%}
+
+{% block gridBottomRightButton %}
+  <div class="button is-hidden" id="gallery-presentation-button">
+    <input type="checkbox" class="button-checkbox" id="gallery-presentation" />
+    <label for="gallery-presentation">
+        <div class="button-icon button-icon--checked">{% include "assets/heroicons/arrows-pointing-out.svg" %}</div>
+        <div class="button-icon button-icon--unchecked">{% include "assets/heroicons/arrows-pointing-in.svg" %}</div>
+    </label>
+  </div>
+{%endblock%}
+
+{% block js %}
+  <script>
+    {% include "js/gallery.js" %}
+    {% include "js/project.js" %}
+  </script>
+{% endblock %}

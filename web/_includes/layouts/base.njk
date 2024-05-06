@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% set baseCss %}
+      {% include "styles/base.css" %}
+      {% include "styles/sidebar.css" %}
+      {% if css %} {{css | safe}}{% endif %}
+    {% endset %}
+
+    <style>
+      {{ baseCss | cssmin | safe }}
+    </style>
+    <script>
+    {# Sets darkmode. Done immediately to prevent flash of inaccurate theme color #}
+      localStorage.getItem('mode') && 
+      document.documentElement.setAttribute('data-mode', localStorage.getItem('mode'));
+    </script>
+
+    {# Fonts #}
+    <link rel="preload" href="/assets/fonts/gotham-narrow/Gotham Narrow Thin.otf" as="font" type="font/otf" crossorigin="anonymous">
+    <link rel="preload" href="/assets/fonts/gotham-narrow/Gotham Narrow Light.otf" as="font" type="font/otf" crossorigin="anonymous">
+    <link rel="preload" href="/assets/fonts/gotham-narrow/Gotham Narrow Book.otf" as="font" type="font/otf" crossorigin="anonymous">
+
+    {# Favicons #}
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/svg+xml" href="/assets/img/favicons/favicon.svg">
+    <link rel="icon" sizes="any" href="/assets/img/favicons/favicon.ico">
+    <link rel="manifest" href="/assets/img/favicons/site.webmanifest">
+    <meta name="theme-color" content="#ffffff">
+    
+    <title>{{home.title}}{% if title %} | {{title}}{%endif%}</title>
+    <meta name="description" content="{% if description %}{{description}}{%else%}{{home.description}}{%endif%}">
+    <link rel="canonical" href="https://lucasfoglia.com{{page.url}}" />
+    {% if noindex %}<meta name="robots" content="noimageindex, nofollow, noindex">{% endif %}
+  </head>
+  
+  <body>
+    <div class="grid-container">
+      <div class="grid-top-left">
+        {% block gridTopLeft %}
+            {# Show sidebar by default #}
+            {% include "./sidebar.njk" %}
+        {%endblock%}
+      </div>
+
+      <div class="grid-middle">
+        <div class="grid-middle-left">
+          {% block gridMiddleLeft %}{%endblock%}
+        </div>
+
+        <div class="grid-middle-right">
+          {% block gridMiddleRight %}{%endblock%}
+        </div>
+      </div>
+
+      <div class="grid-bottom-left">
+          {% block gridBottomLeft %}{%endblock%}
+      </div>
+
+      <div class="grid-bottom-right">
+        <div class="buttons">
+          <div class="button" id="dark-mode-button">
+            <input type="checkbox" class="button-checkbox" id="dark-mode" />
+            <label for="dark-mode">
+                <div class="button-icon button-icon--checked">{% include "assets/heroicons/moon.svg" %}</div>
+                <div class="button-icon button-icon--unchecked">{% include "assets/heroicons/sun.svg" %}</div>
+            </label>
+          </div>
+
+          {% block gridBottomRightButton %}{% endblock %}
+        </div>
+      </div>
+    </div>
+
+    <script>
+      {% include "js/base.js" %}
+      {% include "js/accordion.js" %}
+      {% include "js/sidebar.js" %}
+      {% include "js/swiped-events.min.js" %}
+      {% include "js/smoothscroll-polyfill.min.js" %}
+    </script>
+
+    <script src="{{ "/assets/lazysizes.min.js" | url }}"></script>
+
+    {% block js %}
+    {%endblock%}
+  </body>
+</html>
