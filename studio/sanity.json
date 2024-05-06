@@ -1,11 +1,11 @@
 {
   "root": true,
-  "project": {
-    "name": "lucas-foglia"
-  },
   "api": {
-    "projectId": "rniuqcvd",
+    "projectId": "5j85zl3i",
     "dataset": "production"
+  },
+  "project": {
+    "name": "mimi-plumb"
   },
   "plugins": [
     "@sanity/base",
