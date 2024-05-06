@@ -30,10 +30,10 @@ export default {
         data: [
           {
             title: 'GitHub repo',
-            value: 'https://github.com/izhou/lucas-foglia',
+            value: 'https://github.com/izhou/mimi-plumb',
             category: 'Code'
           },
-          {title: 'Frontend', value: 'https://lucas-foglia-web.netlify.app', category: 'apps'}
+          {title: 'Frontend', value: 'https://mimi-plumb.netlify.app', category: 'apps'}
         ]
       }
     },
