@@ -18,10 +18,10 @@ export default {
                   // apiId: '96803e2b-d02e-4917-85cc-86eabcc4c993'
                 },
                 {
-                  // buildHookId: '60ff17077ab5eb4a0dfd6934',
-                  // title: 'Blog Website',
-                  // name: 'lucas-foglia-web',
-                  // apiId: 'ea180fab-82aa-4e4f-8b13-4790de74201c'
+                  buildHookId: '6639426a2e90953abd9f9469',
+                  title: 'Blog Website',
+                  name: 'mimi-plumb',
+                  apiId: 'a0c6a20e-b34e-4f93-b3c7-86924ea4f236'
                 }
               ]
             }
