@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prebuild": "rm -rf _site",
     "build": "npx eleventy",
     "dev": "npx eleventy --watch --serve",
     "now-build": "npm run build",
