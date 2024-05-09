@@ -12,12 +12,6 @@ export default {
                 'NOTE: Because these sites are static builds, they need to be re-deployed to see the changes when documents are published.',
               sites: [
                 {
-                  // buildHookId: '60ff170740e50447eab28d32',
-                  // title: 'Sanity Studio',
-                  // name: 'lucas-foglia-studio',
-                  // apiId: '96803e2b-d02e-4917-85cc-86eabcc4c993'
-                },
-                {
                   buildHookId: '6639426a2e90953abd9f9469',
                   title: 'Blog Website',
                   name: 'mimi-plumb',
