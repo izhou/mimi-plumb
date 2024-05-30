@@ -31,14 +31,14 @@
   --font-color: #666;
   --background-color: #fff;
   --button-color: rgba(210,210,210, 0.75);
-  --hover-color: darkgreen;
+  --hover-color: black;
 }
 
 html[data-mode="dark"] {
   --font-color: #bbb;
   --background-color: #282828;
   --button-color: rgba(80,80,80, 0.75);
-  --hover-color: darkseagreen;
+  --hover-color: white;
 }
 
 html.hide-nav div {
